@@ -9,11 +9,10 @@ var request = require('request');
 var pluckFirstLineFromFile = function (filePath, callback) {
   fs.readFile(filePath, (error, data) => {
     if (error) {
-      callback(error);
-      return;
+      return callback(error);
     }
     let firstLine = data.toString().split('\n')[0]; // data is a buffer
-    callback(error, firstLine);
+    callback(null, firstLine);
   });
 };
 
@@ -21,10 +20,9 @@ var pluckFirstLineFromFile = function (filePath, callback) {
 var getStatusCode = function (url, callback) {
   request(url, (error, response, body) => {
     if (error) {
-      callback(error);
-      return;
+      return callback(error);
     }
-    callback(error, response.statusCode);
+    callback(null, response.statusCode);
   });
 };
 
